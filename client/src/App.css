@@ -1,142 +1,111 @@
-body{
-  background-color: #A8A8A8;
-  font-family: 'Roboto', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
-
-.container{
-  /*border:1px solid white;*/
-  width: 600px;
-  height: 350px;
+.body {
+  background: #2980b9;
+  height: 100vh;
+}
+.center {
   position: absolute;
-  top:50%;
-  left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  display: inline-flex; 
-}
-.backbox{  
-  background-color: #404040;
+  max-width: 420px;
   width: 100%;
-  height: 80%;
-  position: absolute;
-  transform: translate(0,-50%);
-  top:50%;
-  display: inline-flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
 }
-
-.frontbox{
-  background-color: white;
-  border-radius: 20px;
-  height: 100%;
-  width: 50%;
-  z-index: 10;
-  position: absolute;
-  right:0;
-  margin-right: 3%;
-  margin-left: 3%;
-  transition: right .8s ease-in-out;
+.center h1 {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid silver;
 }
-
-.moving{
-  right:45%;
-}
-
-.loginMsg, .signupMsg{
-  width: 50%;
-  height: 100%;
-  font-size: 15px;
+.center form {
+  padding: 0 40px;
   box-sizing: border-box;
 }
-
-.loginMsg .title,
-.signupMsg .title{
-  font-weight: 300;
-  font-size: 23px;
+form .txt_field {
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
 }
-
-.loginMsg p,
-.signupMsg p {
-  font-weight: 100;
-}
-
-.textcontent{
-  color:white;
-  margin-top:65px;
-  margin-left: 12%;
-}
-
-.loginMsg button,
-.signupMsg button {
-  background-color: #404040;
-  border: 2px solid white;
-  border-radius: 10px;
-  color:white;
-  font-size: 12px;
-  box-sizing: content-box;
-  font-weight: 300;
-  padding:10px;
-  margin-top: 20px;
-}
-
-/* front box content*/
-.login, .signup{
-  padding: 20px;
-  text-align: center;
-}
-
-.login h2,
-.signup h2 {
-  color: #35B729;
-  font-size:22px;
-}
-
-.inputbox{
-  margin-top:30px; 
-}
-.login input, 
-.signup input {
-  display: block;
+.txt_field input {
   width: 100%;
+  padding: 0 5px;
   height: 40px;
-  background-color: #f2f2f2;
+  font-size: 16px;
   border: none;
-  margin-bottom:20px;
-  font-size: 12px;
-  font-weight: bold;
+  background: none;
+  outline: none;
 }
-
-.login button,
-.signup button{
-  background-color: #35B729;
-  border: none;
-  color:white;
-  font-size: 12px;
-  font-weight: 300;
-  box-sizing: content-box;
-  padding:10px;
-  border-radius: 10px;
-  width: 60px;
+.txt_field label {
   position: absolute;
-  right:30px;
-  bottom: 30px;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.txt_field span::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: 0.5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before {
+  width: 100%;
+}
+.pass {
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
   cursor: pointer;
 }
-
-/* Fade In & Out*/
-.login p {
+.pass:hover {
+  text-decoration: underline;
+}
+input[type="button"] {
+  width: 100%;
+  height: 50px;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
   cursor: pointer;
-  color:#404040;
-  font-size:15px;
+  outline: none;
+  transition: 0.5s;
+  border: none;
 }
-
-.loginMsg, .signupMsg{
-  /*opacity: 1;*/
-  transition: opacity .8s ease-in-out;
+input[type="button"]:hover {
+  border-color: #2691d9;
 }
-
-.visibility{
-  opacity: 0;
+.signup_link {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
 }
-
-.hide{
-  display: none;
+.signup_link a {
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup_link a:hover {
+  text-decoration: underline;
 }

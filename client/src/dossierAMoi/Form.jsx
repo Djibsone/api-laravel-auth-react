@@ -5,7 +5,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../components/AuthContext';
 
 const Form = () => {
   const navigate = useNavigate();
