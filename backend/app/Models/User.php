@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -18,21 +20,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'email_verified_at', 'email_verification_token', 'email_verified'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -50,6 +45,26 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'email' => $this->email,
+            'name' => $this->name,
+        ];
+    }
+
+    public function emailVerification()
+    {
+        $email = $this->email;
+        $token = Str::random(40);
+        $user = User::where('email', $email)->first();
+
+        $user->update(['email_verification_token' => $token]);
+        $link = env('Front_url') . 'email-verification?token=' . $token;
+        Mail::send([], [], function ($message) use ($email, $link) {
+            $message
+                ->to($email)
+                ->subject('Verify Your Email Address')
+                ->html("<p>Verify Your Email</p><br/><a href='" . $link . "'>Verify Email Address</a>");
+        });
+        return $link;
     }
 }
