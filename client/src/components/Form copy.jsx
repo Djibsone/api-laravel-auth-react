@@ -5,11 +5,9 @@ import $ from 'jquery';
 import axios from 'axios';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import { useAuth } from './AuthContext';
 
 const Form = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
@@ -121,8 +119,9 @@ const handleLogin = async (e) => {
         password: formData.password,
       });
 
-      login(response.data.user);
+      const token = response.data.authorisation.token;
 
+      localStorage.setItem('token', token);
 
       Swal.fire({
         icon: 'success',

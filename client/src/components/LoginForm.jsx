@@ -1,5 +1,6 @@
 // LoginForm.jsx
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ handleChange, validationErrors, handleLogin }) => {
   return (
@@ -13,7 +14,9 @@ const LoginForm = ({ handleChange, validationErrors, handleLogin }) => {
         <input type="password" name="password" placeholder="Enter Password" className="form-control" onChange={handleChange} />
         {validationErrors.password && <span className="text-danger">{validationErrors.password[0]}</span>}
       </div>
-      <p>FORGET PASSWORD?</p>
+      <div className="d-flex justify-content-end">
+          <Link to="/forgot-password">FORGET PASSWORD?</Link>
+      </div>
       <button onClick={handleLogin}>LOG IN</button>
     </div>
   );

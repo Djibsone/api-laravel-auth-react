@@ -26,7 +26,8 @@ Route::prefix('users')
         Route::post('register', 'register');
         Route::post('login', 'login');
         Route::post('email-verify', 'emailVerify');
-        Route::post('verify-email', 'verifyEmail');
+        // Route::post('verify-email', 'verifyEmail');
+        Route::post('email-verification', 'verifyEmail');
         Route::post('forgot-password', 'forgotPassword');
         Route::post('change-password', 'changePassword');
     });

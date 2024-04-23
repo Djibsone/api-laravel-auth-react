@@ -90,7 +90,7 @@ class AuthController extends Controller
     {
         $user = User::where('email', $email)->first();
         if ($user) {
-            $user->emailVerify();
+            $user->emailVerification();
             return response()->json(['status' => 'error', 'message' => 'Verify Your Email Adddress']);
         } else {
             return response()->json(['status' => 'success', 'message' => 'User Not Found']);
