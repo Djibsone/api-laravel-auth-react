@@ -27,13 +27,12 @@ const Index = () => {
         <div className="container">
             <div className="navbar">
                 <div className="navbar-items">
-                    <Link to="#" className="link">Login</Link>
-                    <Link to="#" className="link">Register</Link>
-                    <Link to="/form" className="link">Form</Link>
+                    <Link to="/login" className="link">Login</Link>
+                    <Link to="/register" className="link">Register</Link>
                 </div>
             </div>
             <div className="main-title">Welcome To Home Page</div>
-            <style>
+            {/* <style>
                 {`
                 .container {
                     text-align: center;
@@ -64,7 +63,7 @@ const Index = () => {
                     font-size: 24px;
                 }
                 `}
-            </style>
+            </style> */}
         </div>
     );
 };

@@ -109,3 +109,13 @@ input[type="button"]:hover {
 .signup_link a:hover {
   text-decoration: underline;
 }
+
+/*index style*/
+.container {
+  text-align: center;
+}
+
+.main-title {
+  margin-top: 50px;
+  font-size: 24px;
+}
