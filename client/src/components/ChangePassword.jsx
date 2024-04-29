@@ -4,6 +4,7 @@ import { useAuth } from "./AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Navbar from "./Navbar";
+import { toast } from "react-toastify";
 
 const ChangePassword = () => {
     const { user, logout } = useAuth();
@@ -46,13 +47,18 @@ const ChangePassword = () => {
             });
 
             if (response.data.status == "success") {
-                Swal.fire({
-                    icon: "success",
-                    title: "Change Password",
-                    text: response.data.message
-                }).then(() => {
+                // Swal.fire({
+                //     icon: "success",
+                //     title: "Change Password",
+                //     text: response.data.message
+                // }).then(() => {
+                //     logout();
+                // });
+                toast.success('Change Password', {
+                    theme: 'dark'
+                }).then(() =>{
                     logout();
-                });
+                })
                 
                 
             } else {
