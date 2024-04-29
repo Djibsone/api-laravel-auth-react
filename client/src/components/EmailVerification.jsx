@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 const EmailVerification = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const EmailVerification = () => {
     if (token) {
       setVerificationToken(token);
 
-      axios.post('http://127.0.0.1:8000/api/users/verify-email', { token })
+      axios.post(API_BASE_URL + '/verify-email', { token })
       .then(response => {
           setVerificationStatus(response.data.status);
           if (response.data.status === 'success' && response.data.token) {

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from '../config';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/users/login', formData /*{ email: formData.email, password: formData.password, }*/);
+            const response = await axios.post(API_BASE_URL + '/login', formData /*{ email: formData.email, password: formData.password, }*/);
     
             login(response.data.user);
     

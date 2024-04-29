@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 
 const ForgotPassword = () => {
@@ -19,7 +20,7 @@ const ForgotPassword = () => {
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/users/forgot-password", { email });
+            const response = await axios.post(API_BASE_URL + '/forgot-password', { email });
             setEmail("");
             
             if (response.data.status === "success") {

@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../config";
 
 const ChangePassword = () => {
     const { user, logout } = useAuth();
@@ -41,7 +42,7 @@ const ChangePassword = () => {
         }
 
         try{
-            const response = await axios.post("http://127.0.0.1:8000/api/users/change-password", {
+            const response = await axios.post(API_BASE_URL + '/change-password', {
                 ...formData,
                 userId: user.id
             });

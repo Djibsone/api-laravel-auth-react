@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from '../config';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/users/register', formData );
+            const response = await axios.post(API_BASE_URL + '/register', formData );
     
             if (response && response.status === 200) {
                 setValidationErrors({});
