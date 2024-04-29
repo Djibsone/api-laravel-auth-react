@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -23,13 +24,19 @@ const Register = () => {
     
             if (response && response.status === 200) {
                 setValidationErrors({});
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: response.data.message
-                }).then(() => {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Success',
+                //     text: response.data.message
+                // }).then(() => {
+                //     navigate("/login");
+                // });
+                
+                toast.success(response.data.message);
+                setTimeout(() => {
                     navigate("/login");
-                });
+                }, 2000);                
+               
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -39,11 +46,12 @@ const Register = () => {
             }
         } catch (error) {
             console.log(error); // Affichez l'erreur dans la console pour le débogage
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'An error occurred during registration.',
-            });
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Error',
+            //     text: 'An error occurred during registration.',
+            // });
+            toast.error(response.data.message);
         }
     };
 

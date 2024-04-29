@@ -10,12 +10,17 @@ import ForgotPassword from './components/ForgotPassword';
 import Profile from './components/Profile';
 import ChangePassword from './components/ChangePassword';
 import Home from './components/Home';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Log from './dossierAMoi/Log';
 
 function App() {
   return (
     <div className="App">
+        <ToastContainer />
         <Routes>
           <Route path='/' element={<Index />} />
+          <Route path='/log' element={<Log />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/change-password' element={ <ProtectedRoute> <ChangePassword />  </ProtectedRoute>} />

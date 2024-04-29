@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -25,22 +26,29 @@ const Login = () => {
     
             login(response.data.user);
     
-            Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',
-                text: 'Welcome back!',
-            }).then(() => {
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Login Successful',
+            //     text: 'Welcome back!',
+            // }).then(() => {
+            //     navigate("/home");
+            // });
+           
+                toast.success('Welcome back!');
                 navigate("/home");
-            });
+        
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Login Failed",
-                    text: "Invalid email or password. Please try again.",
+                // Swal.fire({
+                //     icon: "error",
+                //     title: "Login Failed",
+                //     text: "Invalid email or password. Please try again.",
+                // });
+                toast.error('Invalid email or password. Please try again.', {
+                    theme: 'dark',
                 });
             } else {
-                const responseData = error.response.data;
+                const responseData = error.response.data.message;
                 setValidationErrors(responseData);
                 if (responseData) {
                     setValidationErrors(responseData);
@@ -48,7 +56,7 @@ const Login = () => {
                     Swal.fire({
                         icon: "error",
                         title: "Error",
-                        text: responseData || "Registration failed.",
+                        text: responseData || "Logged failed.",
                     });
                 }
             }

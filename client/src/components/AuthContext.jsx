@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem("user");
         navigate('/login')
-    };
+    };//https://www.akveo.com/ngx-admin/pages/dashboard
 
     return(
         <AuthContext.Provider value={{ user, login, logout }}>
