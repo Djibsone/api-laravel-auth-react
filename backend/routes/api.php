@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')
     ->controller(AuthController::class)
     ->group(function () {
-        Route::get('/', 'userDetails');
+        Route::get('/', 'index');
+        Route::get('/profile', 'userDetails');        
         Route::post('register', 'register');
         Route::post('login', 'login');
         Route::post('email-verify', 'emailVerify');

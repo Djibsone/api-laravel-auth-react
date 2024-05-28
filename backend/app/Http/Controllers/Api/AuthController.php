@@ -18,6 +18,20 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register', 'emailVerify', 'verifyEmail', 'forgotPassword', 'changePassword']]);
     }
 
+    public function index()
+    {
+        try {
+            $users = User::orderBy('created_at', 'desc')->get();
+
+            return response()->json([
+                'status' => 'success',
+                'users' => $users,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
+    }
+    
     public function login(Request $request)
     {
         try {
@@ -35,7 +49,7 @@ class AuthController extends Controller
             $token = Auth::attempt($cridentiels);
 
             if (!$token) {
-                return response()->json(['status' => 'error', 'message' => 'Non authorisé.'], 401);
+                return response()->json(['status' => 'error', 'message' => 'Invalid email or password. Please try again.'], 401);
             }
 
             $user = Auth::user();
