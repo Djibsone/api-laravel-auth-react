@@ -105,7 +105,7 @@ class AuthController extends Controller
     public function userDetails()
     {
         try {
-            return response()->json(auth()->user());
+            return response()->json(['user' => auth()->user()]);
         } catch (\Exception $e) {
             return response()->json($e);
         }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,12 @@ Route::prefix('users')
         Route::post('email-verification', 'verifyEmail');
         Route::post('forgot-password', 'forgotPassword');
         Route::post('change-password', 'changePassword');
+    });
+
+Route::prefix('images')
+    ->controller(ImageController::class)
+    ->group(function () {
+        Route::get('/', 'index');        
+        Route::post('create', 'store');
+        Route::put('/{image}', 'update');
     });

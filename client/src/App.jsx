@@ -13,6 +13,7 @@ import Home from './components/Home';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Log from './dossierAMoi/Log';
+import Form from './dossierAMoi/Form';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/log' element={<Log />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/form' element={<Form />} />
           <Route path='/change-password' element={ <ProtectedRoute> <ChangePassword />  </ProtectedRoute>} />
           <Route path='/dashboard' element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
           <Route path="/email-verification" element={  <EmailVerification />} />
