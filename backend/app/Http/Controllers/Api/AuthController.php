@@ -168,7 +168,10 @@ class AuthController extends Controller
             $email = $request->email;
             $user = User::where('email', $email)->first();
             if ($user) {
-                $password = Str::random(10);
+                $password = '';
+                for ($i = 0; $i < 6; $i++) {
+                    $password .= rand(1, 9);
+                }
                 Mail::send([], [], function ($message) use ($email, $password) {
                     $message
                         ->to($email)

@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post(API_BASE_URL + '/login', formData /*{ email: formData.email, password: formData.password, }*/);
-    
+            
             login(response.data.user);
     
             // Swal.fire({
